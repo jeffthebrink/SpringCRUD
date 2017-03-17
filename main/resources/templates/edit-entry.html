@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit an Entry</title>
+</head>
+<body background="http://www.siue.edu/~mhallor/madisonrobertsphotography1/1back.jpg">
+<h1>Edit an Entry </h1>
+<hr>
+<br>
+
+<h3>Current Entry: </h3>
+{{#books}}
+    {{title}} {{author}} {{releaseYear}}
+{{/books}}
+
+<hr>
+<br>
+
+<h3>New Entry:</h3>
+
+<form action="/edit-entry" method="post">
+    <input type="text" placeholder="New Title" name="title"/>
+    <input type="text" placeholder="New Author" name="author"/>
+    <input type="number" placeholder="New Release Year" name="releaseYear"/>
+    <button type="submit">Edit</button>
+</form>
+
+</body>
+</html>
