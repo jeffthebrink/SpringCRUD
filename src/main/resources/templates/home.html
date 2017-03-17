@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+</head>
+<body background="http://www.siue.edu/~mhallor/madisonrobertsphotography1/1back.jpg">
+
+{{^user}}
+<form action="/login" method="post">
+    <input type="text" placeholder="Name" name="userName" required/>
+    <input type="password" placeholder="Password" name="password" required/>
+    <button type="submit">Login</button>
+</form>
+{{/user}}
+
+
+{{#user}}
+<h1>Welcome, {{name}}, to the book tracking app.</h1> <br> <br>
+<form action="/logout" method="post">
+    <button type="submit">Logout</button>
+</form>
+<br>
+<hr>
+
+<h3>Create a new book entry:</h3>
+<form action="/add-book" method="post">
+    <input type="text" placeholder="Title" name="title"/>
+    <input type="text" placeholder="Author" name="author"/>
+    <input type="number" placeholder="Release Year" name="releaseYear"/>
+    <button type="submit">Submit</button>
+</form>
+
+<hr>
+
+<br>
+<br>
+
+<table border="2">
+    <tr align="center">
+        <th>Title</th>
+        <th>Author</th>
+        <th>Release Year</th>
+        <th>Owner</th>
+        <th>Edit</th>
+        <th>Delete</th>
+    </tr>
+
+    {{#books}}
+    <tr align="center">
+
+        <td>{{title}}</td>
+        <td>{{author}}</td>
+        <td>{{releaseYear}}</td>
+        {{#user}}
+        <td>{{name}}</td>
+        {{/user}}
+        <td>  <a href="/edit?id={{id}}">Edit</a></td>
+        <td> <form action="/delete?id={{id}}" method="post"><button type="submit">Delete</button></form> </td>
+    </tr>
+    {{/books}}
+
+</table>
+
+{{/user}}
+</body>
+</html>
